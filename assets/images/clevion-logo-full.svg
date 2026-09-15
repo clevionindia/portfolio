@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" fill="none" width="100%" height="100%">
+  <defs>
+    <!-- Radiant Fuchsia to Violet (Top Facet) -->
+    <linearGradient id="full-grad-top" x1="20" y1="10" x2="60" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FD71D9" />
+      <stop offset="50%" stop-color="#F776E0" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+
+    <!-- Deep Electric Violet to Orchid (Spine) -->
+    <linearGradient id="full-grad-spine" x1="10" y1="20" x2="40" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F776E0" />
+      <stop offset="40%" stop-color="#9333EA" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+
+    <!-- Vibrant Cyan to Electric Cobalt (Bottom Facet) -->
+    <linearGradient id="full-grad-bottom" x1="20" y1="60" x2="60" y2="75" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9333EA" />
+      <stop offset="40%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+
+    <!-- Inner Refraction Core -->
+    <linearGradient id="full-grad-inner" x1="20" y1="20" x2="55" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDDEFF" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#F776E0" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Titanium Stroke -->
+    <linearGradient id="full-titanium" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="40%" stop-color="#CBD5E1" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.7" />
+    </linearGradient>
+
+    <!-- Wordmark Glow Filter -->
+    <filter id="full-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- 1. Clevion Prism Symbol (0 to 80 width) -->
+  <g transform="translate(10, 8) scale(0.58)">
+    <!-- Glow Backdrop -->
+    <path d="M 60 12 L 98 34 L 98 52 L 80 42 L 80 34 L 60 22 L 34 37 L 34 83 L 60 98 L 80 86 L 80 78 L 98 68 L 98 86 L 60 108 L 22 86 L 22 34 Z" 
+          fill="url(#full-grad-spine)" opacity="0.45" filter="url(#full-glow)" />
+
+    <!-- Top Roof Facet -->
+    <polygon points="60,12 98,34 80,44 42,22" fill="url(#full-grad-top)" />
+    <polygon points="98,34 98,52 82,43 82,25" fill="#C084FC" opacity="0.85" />
+    
+    <!-- Outer Left Spine -->
+    <polygon points="22,34 60,12 42,22 22,34" fill="#FD71D9" />
+    <polygon points="22,34 42,22 42,98 22,86" fill="url(#full-grad-spine)" />
+    
+    <!-- Inner Chamber -->
+    <polygon points="42,22 80,44 80,76 42,98" fill="url(#full-grad-inner)" opacity="0.3" />
+
+    <!-- Bottom Return & Floor -->
+    <polygon points="98,68 98,86 82,95 82,77" fill="#0284C7" opacity="0.85" />
+    <polygon points="60,108 98,86 80,76 42,98" fill="url(#full-grad-bottom)" />
+    <polygon points="22,86 60,108 42,98 22,86" fill="#0369A1" />
+
+    <!-- Titanium Edges -->
+    <polyline points="98,34 60,12 22,34 22,86 60,108 98,86" fill="none" stroke="url(#full-titanium)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <polyline points="98,52 80,42 80,34 60,22 34,37 34,83 60,98 80,86 80,78 98,68" fill="none" stroke="url(#full-titanium)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Apex Nodes -->
+    <circle cx="60" cy="12" r="3" fill="#FFFFFF" />
+    <circle cx="60" cy="108" r="3" fill="#38BDF8" />
+  </g>
+
+  <!-- 2. Typography Wordmark "CLEVION" -->
+  <text x="88" y="47" 
+        font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" 
+        font-size="34" 
+        font-weight="800" 
+        letter-spacing="0.06em" 
+        fill="#FFFFFF">
+    CLEVION
+  </text>
+
+  <!-- Dot Accent -->
+  <circle cx="266" cy="32" r="3.5" fill="#F776E0" filter="url(#full-glow)" />
+
+  <!-- Subtitle Tagline -->
+  <text x="90" y="66" 
+        font-family="'JetBrains Mono', monospace" 
+        font-size="8" 
+        font-weight="600" 
+        letter-spacing="0.28em" 
+        fill="#94A3B8">
+    SPATIAL EVENT IDENTITY &amp; SCENOGRAPHY
+  </text>
+</svg>

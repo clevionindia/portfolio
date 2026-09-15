@@ -1,0 +1,467 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  color-scheme: dark;
+  background-color: var(--bg-obsidian);
+  color: var(--text-heading);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis Smooth Scroll Engine Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.6;
+  background: radial-gradient(circle at 50% 0%, rgba(247, 118, 224, 0.08) 0%, rgba(5, 0, 3, 0) 50%),
+              linear-gradient(180deg, var(--bg-obsidian) 0%, var(--bg-primary) 35%, var(--bg-obsidian) 100%);
+}
+
+/* 3D Background Canvas */
+#webgl-background-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--transition-slow);
+}
+
+/* Optional subtle noise / scanline overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.45;
+  mask-image: linear-gradient(180deg, black 60%, transparent 100%);
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-white);
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.75rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+code, pre, .font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 3.5vw, 2.5rem);
+  padding-right: clamp(1.25rem, 3.5vw, 2.5rem);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 3.5vw, 2.5rem);
+  padding-right: clamp(1.25rem, 3.5vw, 2.5rem);
+}
+
+.section-spacing {
+  padding-top: clamp(4.5rem, 9vw, 8rem);
+  padding-bottom: clamp(4.5rem, 9vw, 8rem);
+  position: relative;
+}
+
+/* ============================================
+   CEREBRIUM-STYLE LIGHT CONTAINER SECTION
+   ============================================ */
+.light-container {
+  background: var(--bg-light);
+  border-radius: var(--radius-3xl);
+  padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 4vw, 4rem);
+  margin: 0 clamp(0.75rem, 2vw, 1.5rem);
+  position: relative;
+  z-index: 1;
+}
+
+.light-container h2,
+.light-container h3 {
+  color: var(--text-navy-heading);
+}
+
+.light-container p {
+  color: var(--text-navy-body);
+}
+
+.light-container .section-header h2 {
+  color: var(--text-navy-heading);
+}
+
+.light-container .section-header p {
+  color: var(--text-navy-body);
+}
+
+/* Section Label (Cerebrium "• LABEL" pattern) */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.section-label .label-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-fuchsia);
+  box-shadow: 0 0 8px var(--accent-fuchsia-glow);
+}
+
+.light-container .section-label {
+  color: var(--text-navy-muted);
+}
+
+/* Cerebrium-style heading with accent word */
+.heading-accent {
+  color: var(--accent-fuchsia);
+}
+
+.light-container .heading-accent {
+  color: var(--accent-fuchsia);
+}
+
+/* Gradient Texts */
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 20%, #E2E8F0 50%, var(--accent-fuchsia) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-fuchsia {
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--accent-fuchsia-bright) 60%, var(--accent-violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #FFFFFF 10%, var(--accent-cyan) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pill Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-pill);
+  background: rgba(247, 118, 224, 0.1);
+  color: var(--accent-fuchsia);
+  border: 1px solid rgba(247, 118, 224, 0.25);
+  backdrop-filter: blur(8px);
+  text-transform: uppercase;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-fuchsia);
+  box-shadow: 0 0 8px var(--accent-fuchsia);
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.8125rem;
+}
+
+.btn-primary {
+  background: #FFFFFF;
+  color: #07090E;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:hover {
+  background: #F1F5F9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.25);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-white);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-light);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btn-glow {
+  background: linear-gradient(135deg, var(--accent-fuchsia) 0%, #D946EF 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px var(--accent-fuchsia-glow);
+}
+
+.btn-glow:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 28px rgba(247, 118, 224, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Cerebrium-style pink CTA button */
+.btn-pink {
+  background: var(--accent-pink);
+  color: #FFFFFF;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 20px rgba(255, 72, 139, 0.3);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.btn-pink:hover {
+  background: var(--accent-pink-hot);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgba(255, 72, 139, 0.5);
+}
+
+/* Ghost button (dark outlined) */
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Section Header Shared */
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+}
+
+.section-header .badge {
+  margin-bottom: 1.25rem;
+}
+
+.section-header h2 {
+  margin-bottom: 1.25rem;
+}
+
+.section-header p {
+  font-size: 1.125rem;
+  color: var(--text-body);
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(16px);
+  transition: all var(--transition-base);
+}
+
+.glass-card:hover {
+  border-color: var(--border-light);
+  background: var(--bg-glass-card-hover);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+}
+
+/* Light-mode card variants (for inside .light-container) */
+.light-container .glass-card {
+  background: var(--bg-light-surface);
+  border: 1px solid var(--bg-light-card-border);
+  backdrop-filter: none;
+  box-shadow: var(--shadow-light-card);
+}
+
+.light-container .glass-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Floating Pink Square Particles */
+.floating-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--accent-fuchsia);
+  opacity: 0.7;
+  animation: float-drift 20s infinite ease-in-out;
+}
+
+.floating-particle:nth-child(even) {
+  animation-duration: 25s;
+  opacity: 0.5;
+}
+
+.floating-particle:nth-child(3n) {
+  animation-duration: 18s;
+  animation-delay: -5s;
+}
+
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-15px) translateX(8px); }
+  50% { transform: translateY(-5px) translateX(-6px); }
+  75% { transform: translateY(-20px) translateX(12px); }
+}
+
+/* Scroll Reveal Animation */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
