@@ -1,6 +1,6 @@
 # Clevion — Visual Identity & Branding for Corporate Events, Expos & Summits
 
-[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-f776e0?style=for-the-badge&logo=github)](https://clevionindia.github.io/portfolio/)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://portfolio-gray-nu-pxelh2phlt.vercel.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
 > **Built for events that can't afford to look average.**  
@@ -11,7 +11,7 @@
 ## 🌐 Live Website
 
 Experience the live, interactive production website:  
-👉 **[https://clevionindia.github.io/portfolio/](https://clevionindia.github.io/portfolio/)**
+👉 **[https://portfolio-gray-nu-pxelh2phlt.vercel.app](https://portfolio-gray-nu-pxelh2phlt.vercel.app)**
 
 ---
 
@@ -35,7 +35,7 @@ Experience the live, interactive production website:
 - **Styling**: Vanilla CSS3 with custom design tokens, dark glassmorphism, and HSL gradients (Zero external CSS framework dependencies)
 - **Smooth Scroll**: [Lenis](https://github.com/darkroomengineering/lenis) momentum scroll physics
 - **Graphics**: HTML5 Canvas, WebGL, and Three.js
-- **Hosting**: 100% Client-Side Static Website deployed seamlessly on GitHub Pages with HTTPS
+- **Hosting**: 100% Client-Side Static Website deployed seamlessly on Vercel with automated CI/CD and HTTPS
 
 ---
 
