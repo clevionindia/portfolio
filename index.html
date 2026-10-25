@@ -1074,7 +1074,16 @@
       display: grid;
       place-items: center;
       font-size: 13px;
-      color: rgba(0, 0, 0, .5)
+      color: rgba(0, 0, 0, .5);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .p-wide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .p-next {
@@ -1695,12 +1704,13 @@
     const pj = $('#proj'); let projOn = false, pcur = 0, px0 = 0;
     const io3 = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in') }), { root: pj, threshold: .15 });
     const fill = i => {
-      pcur = i; const [n, t, y, bg, fg, s, img, desc] = D[i], nx = D[(i + 1) % 8], P = ['#d8cdbb', '#212121', '#b9694e', '#2f3b33', '#8a8478', '#e9e2d6', '#3b4a52', '#cfc3ad'];
+      pcur = i; const [n, t, y, bg, fg, s, img, desc, wideImg] = D[i], nx = D[(i + 1) % 8], P = ['#d8cdbb', '#212121', '#b9694e', '#2f3b33', '#8a8478', '#e9e2d6', '#3b4a52', '#cfc3ad'];
       const tiles = o => Array.from({ length: 18 }, (_, k) => `<i style="--c:${P[(k + o) % 8]}"></i>`).join('');
       const isImg = !!img || (bg && bg.includes('url('));
       const cvCls = isImg ? 'cv has-img' : 'cv';
       const story = desc || 'Comprehensive visual identity, event branding and environmental design developed for organisations that value clarity and craft.';
-      pj.innerHTML = `<section class="p-top"><div class="p-hero"><div class="${cvCls}" style="background:${bg};color:${fg}"><small><span>${t}</span><span>${y}</span></small>${isImg ? '' : `<b class="${s || ''}">${n}</b>`}<small><span>${String(i + 1).padStart(2, '0')}</span><span>Case</span></small></div></div><div class="p-bot"><h1 class="p-t"><span class="rv"><span>${n.toLowerCase()}</span></span></h1><div class="p-meta rvi"><div><em>Category</em>${t}</div><div><em>Year</em>${y}</div><div><em>Based in</em>India</div></div></div></section><section class="p-desc"><p class="rvi">${story}</p></section>${isImg ? '' : `<section class="p-gal"><div class="row">${tiles(0)}</div><div class="row">${tiles(3)}</div></section>`}<section class="p-scr"><div class="mk rvi" style="--c:#1c1c1c">screen 01</div><div class="mk rvi" style="--c:#e9e2d6;color:#555">screen 02</div><div class="mk rvi" style="--c:#8a8478">screen 03</div></section><section class="p-wide rvi">wide image</section><a class="p-next" id="pnext" data-cur="Open"><span><em>next case</em><b class="rv"><span>${nx[0].toLowerCase()}</span></b></span><div class="nt" style="background:${nx[3]}"></div></a>`;
+      const wideCard = wideImg ? `<section class="p-wide rvi"><img src="${wideImg}" alt="${n}"></section>` : `<section class="p-wide rvi">wide image</section>`;
+      pj.innerHTML = `<section class="p-top"><div class="p-hero"><div class="${cvCls}" style="background:${bg};color:${fg}"><small><span>${t}</span><span>${y}</span></small>${isImg ? '' : `<b class="${s || ''}">${n}</b>`}<small><span>${String(i + 1).padStart(2, '0')}</span><span>Case</span></small></div></div><div class="p-bot"><h1 class="p-t"><span class="rv"><span>${n.toLowerCase()}</span></span></h1><div class="p-meta rvi"><div><em>Category</em>${t}</div><div><em>Year</em>${y}</div><div><em>Based in</em>India</div></div></div></section><section class="p-desc"><p class="rvi">${story}</p></section>${isImg ? '' : `<section class="p-gal"><div class="row">${tiles(0)}</div><div class="row">${tiles(3)}</div></section>`}<section class="p-scr"><div class="mk rvi" style="--c:#1c1c1c">screen 01</div><div class="mk rvi" style="--c:#e9e2d6;color:#555">screen 02</div><div class="mk rvi" style="--c:#8a8478">screen 03</div></section>${wideCard}<a class="p-next" id="pnext" data-cur="Open"><span><em>next case</em><b class="rv"><span>${nx[0].toLowerCase()}</span></b></span><div class="nt" style="background:${nx[3]}"></div></a>`;
       pj.scrollTop = 0; pj.classList.remove('live'); pj.querySelectorAll('.rv,.rvi').forEach(el => io3.observe(el)); $('#pnext').onclick = goNext
     };
     const goNext = () => { const n = (pcur + 1) % 8; gsap.to(pj, { opacity: 0, duration: RM ? 0 : .4, onComplete: () => { fill(n); gsap.to(pj, { opacity: 1, duration: RM ? 0 : .5, onComplete: () => { pj.classList.add('live'); gsap.set(pj, { clearProps: 'opacity' }) } }) } }) };
