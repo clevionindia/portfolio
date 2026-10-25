@@ -1,75 +1,300 @@
+/* ==========================================================================
+   CLEVION — DESIGN TOKENS & TYPOGRAPHY SYSTEM
+   Modeled directly after Brandon Yasin's award-winning visual architecture
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,200;1,9..40,300&family=Inter:wght@300;400;500&display=swap');
+
 :root {
-  /* Colors inspired by Cerebrium.ai */
-  --bg-obsidian: #050003;
-  --bg-primary: #07090e;
-  --bg-surface: #0e121a;
-  --bg-surface-elevated: #141923;
-  --bg-glass: rgba(14, 18, 26, 0.65);
-  --bg-glass-card: rgba(255, 255, 255, 0.03);
-  --bg-glass-card-hover: rgba(255, 255, 255, 0.06);
+  /* Default Daylight Theme Variables (automatically overridden by Time Engine) */
+  --color-main: #111111;
+  --color-bg: #F8F6F2;
+  --img-over-opacity: 0.0;
+  --bg-brightness: 1.0;
+  --selection-color: #111111;
+  --selection-bg: rgba(68, 48, 0, 0.2);
+  --focus-bg: var(--color-main);
+  --focus-color: var(--color-bg);
 
-  /* Light Container Section (Cerebrium-style) */
-  --bg-light: #EEF2F5;
-  --bg-light-surface: #FFFFFF;
-  --bg-light-card: rgba(255, 255, 255, 0.85);
-  --bg-light-card-border: rgba(0, 0, 0, 0.08);
-  --text-navy: #172B76;
-  --text-navy-muted: #586490;
-  --text-navy-body: #4A5578;
-  --text-navy-heading: #101421;
+  /* Modal Specific Palette */
+  --color-green: #263b1c;
+  --color-paper-dark: #2C2922;
 
-  /* Borders & Dividers */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.15);
-  --border-focus: rgba(247, 118, 224, 0.5);
-  --border-glow: rgba(247, 118, 224, 0.3);
+  /* Font Families */
+  --font-display: 'DM Sans', 'Neue Haas Unica Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif-mono: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-meta: 'Inter', Helvetica, Arial, sans-serif;
 
-  /* Vibrant Accents */
-  --accent-fuchsia: #F776E0;
-  --accent-fuchsia-bright: #FF8BF0;
-  --accent-fuchsia-glow: rgba(247, 118, 224, 0.4);
-  --accent-violet: #A855F7;
-  --accent-cyan: #38BDF8;
-  --accent-cyan-glow: rgba(56, 189, 248, 0.35);
-  --accent-amber: #F59E0B;
-  --accent-emerald: #10B981;
-  --accent-pink: #FF488B;
-  --accent-pink-hot: #F6186A;
+  /* Layout Constants */
+  --header-height-mobile: 4rem;
+  --header-height-tablet: 5.6rem;
+  --header-height-desktop: 8.4rem;
+  --gap-grid: 0.8rem;
+  --pad-page-mobile: 0.8rem;
+  --pad-page-desktop: 1.6rem;
+}
 
-  /* Typography Colors */
-  --text-white: #FFFFFF;
-  --text-heading: #F8FAFC;
-  --text-body: #94A3B8;
-  --text-muted: #64748B;
-  --text-dim: #475569;
+/* Fluid HTML Base (1rem = 10px on standard desktop) */
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
-  /* Fonts */
-  --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Space Mono', monospace;
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
-  /* Dimensions & Spacing */
-  --header-height: 72px;
-  --container-max-width: 1280px;
-  --container-wide-width: 1400px;
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
-  --radius-2xl: 30px;
-  --radius-3xl: 40px;
-  --radius-pill: 9999px;
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
+}
 
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: 400ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 700ms cubic-bezier(0.16, 1, 0.3, 1);
+/* ==========================================================================
+   TYPOGRAPHY HIERARCHY (Exact Brandon Yasin Scale & Negative Kerning)
+   ========================================================================== */
 
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 40px var(--accent-fuchsia-glow);
-  --shadow-glow-cyan: 0 0 40px var(--accent-cyan-glow);
-  --shadow-light-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* 1. Primary Display Hero Titles */
+.font-headline-1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 5.4rem;
+  line-height: 1.14;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+@media only screen and (min-width: 768px) {
+  .font-headline-1 {
+    font-size: 4.8rem;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .font-headline-1 {
+    font-size: 9rem;
+    line-height: 1.1;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-headline-1 {
+    font-size: 6.26vw;
+  }
+}
+/* Negative Stacking on Multi-Line Headers */
+.font-headline-1 > div:not(:first-child),
+.font-headline-1 > span:not(:first-child) {
+  margin-top: -1.6rem;
+  display: block;
+}
+@media only screen and (min-width: 1025px) {
+  .font-headline-1 > div:not(:first-child),
+  .font-headline-1 > span:not(:first-child) {
+    margin-top: -3.2rem;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-headline-1 > div:not(:first-child),
+  .font-headline-1 > span:not(:first-child) {
+    margin-top: -2.23vw;
+  }
+}
+
+/* 2. Secondary Display Titles & Modal Headings */
+.font-headline-2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+@media only screen and (min-width: 768px) {
+  .font-headline-2 {
+    font-size: clamp(28px, 3.125vw, 32px);
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .font-headline-2 {
+    font-size: 4.8rem;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-headline-2 {
+    font-size: 3.34vw;
+  }
+}
+
+.font-headline-2-large {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 5.5rem;
+  line-height: 1.24;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+@media only screen and (min-width: 1025px) {
+  .font-headline-2-large {
+    font-size: 9rem;
+    line-height: 1.1;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-headline-2-large {
+    font-size: 6.26vw;
+  }
+}
+
+/* 3. Section Headlines */
+.font-headline-3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 2.8rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@media only screen and (min-width: 1025px) {
+  .font-headline-3 {
+    font-size: 4rem;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-headline-3 {
+    font-size: 2.78vw;
+  }
+}
+
+/* 4. Lead Editorial Narrative Body */
+.font-body-40-100 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.6rem;
+  line-height: 1.22;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+@media only screen and (min-width: 1025px) {
+  .font-body-40-100 {
+    font-size: 4rem;
+    line-height: 1.15;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-body-40-100 {
+    font-size: 2.78vw;
+  }
+}
+
+.font-body-40 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.4rem;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+@media only screen and (min-width: 1025px) {
+  .font-body-40 {
+    font-size: 4rem;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-body-40 {
+    font-size: 2.78vw;
+  }
+}
+
+/* 5. Editorial Paragraph & Subtitle Typography */
+.font-body-24 {
+  font-family: var(--font-serif-mono);
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@media only screen and (min-width: 1025px) {
+  .font-body-24 {
+    font-size: 2.4rem;
+    line-height: 1.2;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-body-24 {
+    font-size: 1.67vw;
+  }
+}
+
+.font-body-20 {
+  font-family: var(--font-serif-mono);
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+@media only screen and (min-width: 1438px) {
+  .font-body-20 {
+    font-size: 1.39vw;
+  }
+}
+
+.font-body-18 {
+  font-family: var(--font-serif-mono);
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+@media only screen and (min-width: 1025px) {
+  .font-body-18 {
+    font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-body-18 {
+    font-size: 1.25vw;
+  }
+}
+
+.font-body-13 {
+  font-family: var(--font-meta);
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+@media only screen and (min-width: 1438px) {
+  .font-body-13 {
+    font-size: 0.9vw;
+  }
+}
+
+/* 6. Signature 12px Micro-Typography (All-Caps Metadata & Controls) */
+.font-body-12 {
+  font-family: var(--font-meta);
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* Quotation Style */
+.font-quote {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 2.4rem;
+  line-height: 1.38;
+  letter-spacing: 0;
+}
+@media only screen and (min-width: 1025px) {
+  .font-quote {
+    font-size: 3.2rem;
+  }
+}
+@media only screen and (min-width: 1438px) {
+  .font-quote {
+    font-size: 2.23vw;
+  }
 }

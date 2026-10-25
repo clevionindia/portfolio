@@ -1,194 +1,434 @@
 /**
- * Clevion Application Coordinator
- * Enhanced with Cerebrium-style floating particles & scroll reveal
+ * CLEVION — MASTER APPLICATION INTERACTION COORDINATOR
+ * 100% Modeled After Brandon Yasin's award-winning portfolio (brandonyasin.com)
  */
 
-// 0. Initialize Lenis Smooth Scroll Engine (Cerebrium-Tuned Physics)
-let lenis = null;
-if (typeof Lenis !== 'undefined') {
-  lenis = new Lenis({
-    lerp: 0.1,
-    duration: 1.2,
-    smoothWheel: true,
-    wheelMultiplier: 1.0,
-    touchMultiplier: 1.2,
-    infinite: false
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
 
-  window.lenis = lenis;
+  // 0. Preloader — hide after brief delay for SVG line drawing & bar fill
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    setTimeout(() => {
+      preloader.classList.add('is-hidden');
+      const activeView = document.querySelector('.page-view.is-active');
+      if (activeView) {
+        activeView.classList.add('is-entering');
+        activeView.addEventListener('animationend', () => {
+          activeView.classList.remove('is-entering');
+        }, { once: true });
+      }
+    }, 1100);
+  }
 
-  function raf(time) {
-    lenis.raf(time);
+  // 1. Initialize Lenis Smooth Scroll
+  let lenis = null;
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.5,
+      infinite: false
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
   }
-  requestAnimationFrame(raf);
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Header scroll effect with Lenis support
-  const header = document.querySelector('.site-header');
-function handleHeaderScroll(scrollY) {
-  if (!header) return;
-  if (scrollY > 40) {
-    header.classList.add('scrolled');
-    header.style.background = 'rgba(5, 0, 3, 0.75)';
-    header.style.backdropFilter = 'blur(20px)';
-    header.style.webkitBackdropFilter = 'blur(20px)';
-    header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.08)';
-  } else {
-    header.classList.remove('scrolled');
-    header.style.background = '';
-    header.style.backdropFilter = '';
-    header.style.webkitBackdropFilter = '';
-    header.style.borderBottom = '';
-  }
-}
-
-if (lenis) {
-  lenis.on('scroll', (e) => handleHeaderScroll(e.scroll));
-} else {
-  window.addEventListener('scroll', () => handleHeaderScroll(window.scrollY), { passive: true });
-}
-
-// Smooth scroll for nav anchor links with header offset
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    const href = anchor.getAttribute('href');
-    if (!href || href === '#' || href.startsWith('#modal-')) return;
-
-    const target = document.querySelector(href);
-    if (target) {
-      e.preventDefault();
-      const headerHeight = header ? header.offsetHeight : 80;
-      if (lenis) {
-        lenis.scrollTo(target, { offset: -headerHeight - 20, duration: 1.2 });
+  // 2. Award Badge Ticker Alternator in Header
+  const logoLine = document.querySelector('.logo-line');
+  const awardEl = document.querySelector('.award');
+  if (logoLine && awardEl) {
+    let showAward = false;
+    setInterval(() => {
+      showAward = !showAward;
+      if (showAward) {
+        logoLine.style.opacity = '0';
+        logoLine.style.pointerEvents = 'none';
+        awardEl.style.opacity = '1';
+        awardEl.style.pointerEvents = 'auto';
       } else {
-        target.scrollIntoView({ behavior: 'smooth' });
+        logoLine.style.opacity = '1';
+        logoLine.style.pointerEvents = 'auto';
+        awardEl.style.opacity = '0';
+        awardEl.style.pointerEvents = 'none';
       }
-    }
-  });
-});
-
-// 2. Modals (Consultation & Showreel)
-const modalTriggers = document.querySelectorAll('[data-open-modal]');
-const modalClosers = document.querySelectorAll('[data-close-modal]');
-const backdrops = document.querySelectorAll('.modal-backdrop');
-
-modalTriggers.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const modalId = btn.getAttribute('data-open-modal');
-    const targetModal = document.getElementById(modalId);
-    if (targetModal) {
-      targetModal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-});
-
-function closeModal() {
-  backdrops.forEach(m => m.classList.remove('open'));
-  document.body.style.overflow = '';
-}
-
-modalClosers.forEach(btn => {
-  btn.addEventListener('click', closeModal);
-});
-
-backdrops.forEach(modal => {
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
-});
-
-// 3. Mobile Navigation Toggle
-const mobileBtn = document.getElementById('mobile-menu-btn');
-const navLinks = document.getElementById('main-nav-links');
-
-if (mobileBtn && navLinks) {
-  mobileBtn.addEventListener('click', () => {
-    const isExpanded = mobileBtn.getAttribute('aria-expanded') === 'true';
-    mobileBtn.setAttribute('aria-expanded', !isExpanded);
-    navLinks.classList.toggle('mobile-open');
-  });
-}
-
-// 4. Consultation Form Submission Feedback
-const consultForm = document.getElementById('consult-form');
-if (consultForm) {
-  consultForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const submitBtn = consultForm.querySelector('button[type="submit"]');
-    submitBtn.innerText = 'Transmitting Summit Request...';
-    submitBtn.disabled = true;
-
-    setTimeout(() => {
-      consultForm.innerHTML = `
-          <div style="text-align: center; padding: 2rem 0;">
-            <div style="width: 50px; height: 50px; margin: 0 auto 1.25rem; border-radius: 50%; background: rgba(247, 118, 224, 0.2); display: flex; align-items: center; justify-content: center; color: var(--accent-fuchsia);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-            <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: #fff;">Consultation Confirmed</h3>
-            <p style="color: var(--text-body); font-size: 0.95rem;">Our executive creative director will connect with your event production team within 4 hours.</p>
-          </div>
-        `;
-    }, 1200);
-  });
-}
-
-// 5. Floating Pink Square Particles — Cerebrium-style
-function createFloatingParticles(containerId, count = 12) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  for (let i = 0; i < count; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'floating-particle';
-
-    // Random position
-    particle.style.left = Math.random() * 95 + '%';
-    particle.style.top = Math.random() * 90 + '%';
-
-    // Random size (8-14px)
-    const size = 8 + Math.random() * 6;
-    particle.style.width = size + 'px';
-    particle.style.height = size + 'px';
-
-    // Random opacity
-    particle.style.opacity = 0.3 + Math.random() * 0.5;
-
-    // Random animation delay
-    particle.style.animationDelay = -(Math.random() * 20) + 's';
-    particle.style.animationDuration = (15 + Math.random() * 15) + 's';
-
-    container.appendChild(particle);
+    }, 4500);
   }
-}
 
-// Floating particles only for security and footer sections (hero now uses 3D Ribbon Motion background)
-createFloatingParticles('security-particles', 14);
-createFloatingParticles('footer-particles', 8);
+  // 3. Homepage Gallery Draggable Horizontal Momentum
+  const gallery = document.querySelector('.gallery');
+  if (gallery) {
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
 
-// 6. Scroll Reveal Animation — IntersectionObserver
-const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    gallery.addEventListener('mousedown', (e) => {
+      // Don't trigger drag on anchor clicks
+      if (e.target.closest('a')) {
+        // allow click
+      }
+      isDown = true;
+      gallery.classList.add('is-dragging');
+      startX = e.pageX - gallery.offsetLeft;
+      scrollLeft = gallery.scrollLeft;
+    });
 
-if (revealElements.length > 0) {
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        revealObserver.unobserve(entry.target);
+    window.addEventListener('mouseup', () => {
+      isDown = false;
+      if (gallery) gallery.classList.remove('is-dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - gallery.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      gallery.scrollLeft = scrollLeft - walk;
+    });
+
+    // Horizontal wheel conversion
+    gallery.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        gallery.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  }
+
+  // 4. Archive Gallery Horizontal Scrolling
+  const archiveTrack = document.querySelector('.archive-gallery__track');
+  if (archiveTrack) {
+    let isTrackDown = false;
+    let trackStartX = 0;
+    let trackScrollLeft = 0;
+
+    archiveTrack.addEventListener('mousedown', (e) => {
+      isTrackDown = true;
+      trackStartX = e.pageX - archiveTrack.offsetLeft;
+      trackScrollLeft = archiveTrack.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+      isTrackDown = false;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isTrackDown) return;
+      e.preventDefault();
+      const x = e.pageX - archiveTrack.offsetLeft;
+      const walk = (x - trackStartX) * 1.5;
+      archiveTrack.scrollLeft = trackScrollLeft - walk;
+    });
+
+    archiveTrack.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        archiveTrack.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  }
+
+  // 5. About Page: Interactive Values Cards
+  const valueCards = document.querySelectorAll('.value-card');
+  valueCards.forEach(card => {
+    const toggleBtn = card.querySelector('.value-toggle-btn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.toggle('is-expanded');
+      });
+    }
+  });
+
+  // 6. About Page: 6-Step Design Process Stepper
+  const processBtns = document.querySelectorAll('.process-step-btn');
+  const processSlots = document.querySelectorAll('.process-content-slot > div');
+  const progressBar = document.querySelector('.process-progress-bar');
+
+  processBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stepIdx = parseInt(btn.getAttribute('data-step'), 10);
+      processBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      if (progressBar) {
+        progressBar.style.width = `${((stepIdx + 1) / processBtns.length) * 100}%`;
+      }
+
+      processSlots.forEach((slot, i) => {
+        if (i === stepIdx) {
+          slot.style.display = 'block';
+          slot.style.opacity = '1';
+        } else {
+          slot.style.display = 'none';
+          slot.style.opacity = '0';
+        }
+      });
+    });
+  });
+
+  // 7. Fullscreen Spatial Menu Overlay (3 Miniature Interactive Browser Panels)
+  const menuBtn = document.querySelector('.menu-toggle');
+  const spatialOverlay = document.getElementById('spatial-menu-overlay');
+  const spatialBackdrop = document.querySelector('.spatial-menu-backdrop');
+  const spatialStage = document.querySelector('.spatial-menu-stage');
+  const spatialTiles = document.querySelectorAll('.spatial-tile');
+  const menuLabelText = document.querySelector('.menu-label-text');
+  const menuLabelHover = document.querySelector('.menu-label-hover');
+
+  let isMenuOpen = false;
+  let isZoomTransitioning = false;
+
+  function setMenuButtonText(text) {
+    if (menuLabelText && menuLabelHover) {
+      menuLabelText.textContent = text;
+      menuLabelHover.textContent = text;
+    }
+  }
+
+  function openMenu() {
+    if (isZoomTransitioning) return;
+    isMenuOpen = true;
+    if (spatialOverlay) {
+      spatialOverlay.classList.add('is-active');
+      spatialOverlay.setAttribute('aria-hidden', 'false');
+    }
+    document.body.classList.add('is-menu-open');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+    setMenuButtonText('Close');
+  }
+
+  function closeMenu() {
+    if (isZoomTransitioning) return;
+    isMenuOpen = false;
+    if (spatialOverlay) {
+      spatialOverlay.classList.remove('is-active');
+      spatialOverlay.setAttribute('aria-hidden', 'true');
+    }
+    document.body.classList.remove('is-menu-open');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+    setMenuButtonText('Menu');
+
+    // Reset zoom classes
+    spatialTiles.forEach(t => {
+      t.classList.remove('is-zooming-in', 'is-fading-out');
+    });
+  }
+
+  function toggleMenu() {
+    if (isMenuOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  if (menuBtn) {
+    menuBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleMenu();
+    });
+  }
+
+  // Close menu on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMenuOpen) {
+      closeMenu();
+    }
+  });
+
+  // Close menu when clicking outside tiles (backdrop or stage margin)
+  if (spatialBackdrop) {
+    spatialBackdrop.addEventListener('click', () => {
+      if (isMenuOpen) closeMenu();
+    });
+  }
+  if (spatialStage) {
+    spatialStage.addEventListener('click', (e) => {
+      if (e.target === spatialStage && isMenuOpen) {
+        closeMenu();
       }
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+  }
+
+  // Miniature Panels (Spatial Tiles) Click-to-Zoom Expansion
+  spatialTiles.forEach(tile => {
+    function handleTileSelect() {
+      if (isZoomTransitioning) return;
+      const targetHash = tile.getAttribute('data-target');
+      if (!targetHash) return;
+
+      isZoomTransitioning = true;
+
+      // Clicked panel zooms in toward camera (scale 1.35)
+      tile.classList.add('is-zooming-in');
+
+      // Sibling panels shrink and fade out (scale 0.9)
+      spatialTiles.forEach(other => {
+        if (other !== tile) {
+          other.classList.add('is-fading-out');
+        }
+      });
+
+      // Smooth transition into chosen view
+      setTimeout(() => {
+        window.location.hash = targetHash;
+        closeMenu();
+        isZoomTransitioning = false;
+        spatialTiles.forEach(t => {
+          t.classList.remove('is-zooming-in', 'is-fading-out');
+        });
+      }, 420);
+    }
+
+    tile.addEventListener('click', handleTileSelect);
+
+    // Keyboard support (Enter / Space)
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleTileSelect();
+      }
+    });
   });
 
-  revealElements.forEach(el => revealObserver.observe(el));
-}
+  // 8. Tactile Paper Contact Sheet Modal
+  const contactBtns = document.querySelectorAll('.contact, .open-contact-modal');
+  const modalWrap = document.querySelector('.modal-wrap');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalCloseBtns = document.querySelectorAll('.modal-close');
+  const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
+  const tabsLine = document.querySelector('.tabs-line');
+  const paperCollab = document.querySelector('.paper-bg--collab');
+  const modalTitleClient = document.getElementById('modal-title-client');
+  const modalTitleCollab = document.getElementById('modal-title-collab');
+  const modalDescClient = document.getElementById('modal-desc-client');
+  const modalDescCollab = document.getElementById('modal-desc-collab');
+
+  function updateTabsLine() {
+    const activeTab = document.querySelector('.tab-btn.is-active');
+    if (activeTab && tabsLine) {
+      tabsLine.style.transform = `translateX(${activeTab.offsetLeft}px)`;
+      tabsLine.style.width = `${activeTab.offsetWidth}px`;
+    }
+  }
+
+  function openContactModal() {
+    if (modalWrap) modalWrap.classList.add('is-active');
+    if (modalBackdrop) modalBackdrop.classList.add('is-active');
+    closeMenu();
+    setTimeout(updateTabsLine, 100);
+  }
+  function closeContactModal() {
+    if (modalWrap) modalWrap.classList.remove('is-active');
+    if (modalBackdrop) modalBackdrop.classList.remove('is-active');
+  }
+
+  contactBtns.forEach(btn => btn.addEventListener('click', openContactModal));
+  modalCloseBtns.forEach(btn => btn.addEventListener('click', closeContactModal));
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeContactModal);
+
+  // Tabs Switching (Client Brief vs Talent / Collab)
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      updateTabsLine();
+
+      const tab = btn.getAttribute('data-tab');
+      if (tab === 'collab') {
+        if (modalWrap) modalWrap.classList.add('is-collab');
+        if (paperCollab) paperCollab.style.opacity = '1';
+        if (modalTitleClient) modalTitleClient.style.display = 'none';
+        if (modalTitleCollab) modalTitleCollab.style.display = 'block';
+        if (modalDescClient) modalDescClient.style.display = 'none';
+        if (modalDescCollab) modalDescCollab.style.display = 'block';
+      } else {
+        if (modalWrap) modalWrap.classList.remove('is-collab');
+        if (paperCollab) paperCollab.style.opacity = '0';
+        if (modalTitleClient) modalTitleClient.style.display = 'block';
+        if (modalTitleCollab) modalTitleCollab.style.display = 'none';
+        if (modalDescClient) modalDescClient.style.display = 'block';
+        if (modalDescCollab) modalDescCollab.style.display = 'none';
+      }
+    });
+  });
+
+  // 9. Contact Form Submission & Confirmation Modal
+  const contactForm = document.getElementById('contact-form');
+  const successModal = document.querySelector('.success-wrapper');
+  const successCloseBtn = document.querySelector('.success-close');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      closeContactModal();
+      if (successModal) successModal.classList.add('is-active');
+      contactForm.reset();
+    });
+  }
+
+  if (successCloseBtn && successModal) {
+    successCloseBtn.addEventListener('click', () => {
+      successModal.classList.remove('is-active');
+    });
+  }
+
+  // 10. Custom Interactive Cursor Follower
+  const cursorDot = document.createElement('div');
+  cursorDot.className = 'cursor-dot';
+  document.body.appendChild(cursorDot);
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let cursorX = mouseX;
+  let cursorY = mouseY;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function renderCursor() {
+    cursorX += (mouseX - cursorX) * 0.2;
+    cursorY += (mouseY - cursorY) * 0.2;
+    cursorDot.style.left = `${cursorX}px`;
+    cursorDot.style.top = `${cursorY}px`;
+    requestAnimationFrame(renderCursor);
+  }
+  requestAnimationFrame(renderCursor);
+
+  // Contextual cursor expansions
+  const dragTargets = document.querySelectorAll('.gallery, .archive-gallery__track, .egg');
+  dragTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursorDot.classList.add('is-expanded');
+      cursorDot.textContent = 'DRAG';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorDot.classList.remove('is-expanded');
+      cursorDot.textContent = '';
+    });
+  });
+
+  const viewTargets = document.querySelectorAll('.item, .next__link, .menu-tile, .spatial-tile');
+  viewTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursorDot.classList.add('is-expanded');
+      cursorDot.textContent = 'VIEW';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorDot.classList.remove('is-expanded');
+      cursorDot.textContent = '';
+    });
+  });
 });

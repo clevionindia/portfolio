@@ -14,3 +14,8 @@ npm-debug.log*
 # Environment
 .env
 .env.local
+
+# Backup & recordings
+*.backup
+*.mp4
+push.bat

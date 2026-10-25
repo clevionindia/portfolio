@@ -41,5 +41,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Clevion Event Branding Server running at http://localhost:${PORT}/`);
+  console.log(`NYX Portfolio Server running at http://localhost:${PORT}/`);
 });
