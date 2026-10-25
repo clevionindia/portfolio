@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>NYX — Brand & Identity Design</title>
+  <title>Clevstudios — Brand & Identity Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -1425,7 +1425,7 @@
                   <div class="a-txt">
                     <div class="blk" data-p="0">
                       <h6 class="rvi">About me</h6>
-                      <p class="rvi" style="--d:.1s">I’m NYX, an independent designer based in Udaipur, India. I work
+                      <p class="rvi" style="--d:.1s">I’m Clevstudios, an independent designer based in Udaipur, India. I work
                         with corporate and professional organisations on identities, event branding, and print and
                         digital communication.</p>
                       <p class="rvi" style="--d:.2s">My approach is classic and editorial: clear structure, confident
@@ -1598,7 +1598,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
   <script>
-    const WA = '91XXXXXXXXXX'; // replace with your WhatsApp number, country code first
+    const WA = '918619978130'; // replace with your WhatsApp number, country code first
     const RM = matchMedia('(prefers-reduced-motion:reduce)').matches, FINE = matchMedia('(hover:hover)').matches;
     if (window.gsap) gsap.globalTimeline.timeScale(.62);
     const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -1628,9 +1628,9 @@
     const root = document.documentElement, tb = $('#theme');
     const cur = () => root.dataset.theme || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
     const label = () => { const t = cur() === 'dark' ? 'Light' : 'Dark'; tb.firstElementChild.textContent = t; tb.firstElementChild.dataset.t = t };
-    try { const s = localStorage.getItem('nyx-theme'); if (s) root.dataset.theme = s } catch (e) { }
+    try { const s = localStorage.getItem('clevstudios-theme'); if (s) root.dataset.theme = s } catch (e) { }
     label();
-    tb.onclick = () => { const n = cur() === 'dark' ? 'light' : 'dark'; root.dataset.theme = n; try { localStorage.setItem('nyx-theme', n) } catch (e) { } label() };
+    tb.onclick = () => { const n = cur() === 'dark' ? 'light' : 'dark'; root.dataset.theme = n; try { localStorage.setItem('clevstudios-theme', n) } catch (e) { } label() };
     // time
     const mv = $('#viewport'), stage = $('#stage'), pan = $('#pan'), mb = $('#menu'), s0 = $('#scr0'), s1 = $('#scr1'), abt = $('#abt');
     const SC = .46, WF = .42, GF = .025, EZ = 'expo.inOut', DUR = RM ? 0 : 1.15; let state = 'closed', panCur = 0;
@@ -1708,7 +1708,7 @@
       e.preventDefault();
       const pick = g => [...f.querySelectorAll(`[data-g=${g}] .opt[aria-pressed=true]`)].map(x => x.textContent).join(', ') || '-';
       const v = n => (f.elements[n] && f.elements[n].value) || '-';
-      const msg = k === 0 ? `Hi NYX, new project enquiry.\nName: ${v('name')}\nContact: ${v('contact')}\nCompany: ${v('company')}\nLocation: ${v('loc')}\nScope: ${pick('scope')}\nFormat: ${pick('format')}\nBudget: ${pick('budget')}\nTimeline: ${v('time')}\nNote: ${v('note')}` : `Hi NYX, I’d like to join your network.\nName: ${v('name')}\nContact: ${v('contact')}\nDiscipline: ${pick('disc')}\nPortfolio: ${v('link')}\nNote: ${v('note')}`;
+      const msg = k === 0 ? `Hi Clevstudios, new project enquiry.\nName: ${v('name')}\nContact: ${v('contact')}\nCompany: ${v('company')}\nLocation: ${v('loc')}\nScope: ${pick('scope')}\nFormat: ${pick('format')}\nBudget: ${pick('budget')}\nTimeline: ${v('time')}\nNote: ${v('note')}` : `Hi Clevstudios, I’d like to join your network.\nName: ${v('name')}\nContact: ${v('contact')}\nDiscipline: ${pick('disc')}\nPortfolio: ${v('link')}\nNote: ${v('note')}`;
       f.querySelector('.thx').style.opacity = 1; window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank')
     });
     // project page

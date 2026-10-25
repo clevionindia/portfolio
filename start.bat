@@ -1,5 +1,5 @@
 @echo off
-echo Starting NYX Portfolio...
+echo Starting Clevstudios Portfolio...
 
 set "NODE_EXE=node"
 where node >nul 2>nul
