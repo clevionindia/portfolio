@@ -84,93 +84,9 @@
         { span: 'span-10', img: 'assets/images/cases/Cardiolive/badge.png', caption: '04. Delegate Badge & Woven Lanyard Suite' },
         { span: 'span-8-right', img: 'assets/images/cases/Cardiolive/notepad.png', caption: '05. Executive Table Stationery & Coaster Set' }
       ],
-      nextId: 'raj-neocon',
-      nextTitle: 'raj neocon national assembly',
-      nextImage: 'assets/images/clevion_gala_stage.jpg'
-    },
-    'raj-neocon': {
-      title: 'raj neocon national assembly',
-      client: 'Raj Neocon Medical Board',
-      year: '2023',
-      category: 'Medical Congress',
-      tags: ['Mainstage Scenography', '3D Motion', 'Broadcast Media'],
-      heroImage: 'assets/images/clevion_gala_stage.jpg',
-      leadDesc: 'Redefining medical conference scenography through bespoke ambient illumination, multi-tiered acoustic baffling, and cinematic LED media loops built for 4K live broadcasts.',
-      railImages: [
-        'assets/images/clevion_gala_stage.jpg',
-        'assets/images/venue-before-setup.jpg',
-        'assets/images/clevion_summit_keynote.jpg',
-        'assets/images/hero-ribbon-bg.jpg'
-      ],
-      galleryItems: [
-        { span: 'span-full', img: 'assets/images/clevion_gala_stage.jpg', caption: '01. Illumination Architecture & Stage Structure' },
-        { span: 'span-10', img: 'assets/images/venue-before-setup.jpg', caption: '02. Spatial Alignment & Site Mapping' }
-      ],
-      nextId: 'jet-set-go',
-      nextTitle: 'jet set go aviation summit',
-      nextImage: 'assets/images/hero-ribbon-bg.jpg'
-    },
-    'jet-set-go': {
-      title: 'jet set go aviation summit',
-      client: 'Jet Set Go Aviation',
-      year: '2024',
-      category: 'Luxury Aviation Forum',
-      tags: ['Spatial Experience', 'Minimalist Branding', 'Exhibition'],
-      heroImage: 'assets/images/hero-ribbon-bg.jpg',
-      leadDesc: 'High-luxury spatial branding and VIP lounge scenography celebrating executive aviation. Monolithic aluminum spatial dividers paired with dynamic generative LED flight paths.',
-      railImages: [
-        'assets/images/hero-ribbon-bg.jpg',
-        'assets/images/clevion-brand-concept.jpg',
-        'assets/images/clevion_expo_pavilion.jpg'
-      ],
-      galleryItems: [
-        { span: 'span-full', img: 'assets/images/hero-ribbon-bg.jpg', caption: '01. Generative Flight Motion Wall' },
-        { span: 'span-10', img: 'assets/images/clevion-brand-concept.jpg', caption: '02. Identity Geometry & Airspace Symbols' }
-      ],
-      nextId: 'arthroscopy-expo',
-      nextTitle: 'udaipur arthroscopy expo',
-      nextImage: 'assets/images/venue-before-setup.jpg'
-    },
-    'arthroscopy-expo': {
-      title: 'udaipur arthroscopy expo',
-      client: 'Arthroscopy Association',
-      year: '2023',
-      category: 'Surgical Pavilion',
-      tags: ['Booth Architecture', 'Signage Systems', 'Lighting'],
-      heroImage: 'assets/images/venue-before-setup.jpg',
-      leadDesc: 'Turning a raw industrial convention hall into a surgical research exhibition with modular pavilion architecture, illuminated acoustic fabrics, and seamless delegate navigation.',
-      railImages: [
-        'assets/images/venue-before-setup.jpg',
-        'assets/images/clevion_summit_keynote.jpg',
-        'assets/images/clevion_expo_pavilion.jpg'
-      ],
-      galleryItems: [
-        { span: 'span-full', img: 'assets/images/venue-before-setup.jpg', caption: '01. Venue Hall Architecture' },
-        { span: 'span-10', img: 'assets/images/clevion_expo_pavilion.jpg', caption: '02. Completed Surgical Pavilion' }
-      ],
-      nextId: 'gala-stage',
-      nextTitle: 'clevion gala & awards night',
-      nextImage: 'assets/images/clevion_gala_stage.jpg'
-    },
-    'gala-stage': {
-      title: 'clevion gala & awards night',
-      client: 'Annual Creative Forum',
-      year: '2024',
-      category: 'Experiential Gala',
-      tags: ['Lighting Architecture', 'Acoustic Staging', 'Dynamic LED'],
-      heroImage: 'assets/images/clevion_gala_stage.jpg',
-      leadDesc: 'An experiential banquet and awards scenography centered around an asymmetrical sculptural light rig and kinetic projections synced to symphonic orchestral movements.',
-      railImages: [
-        'assets/images/clevion_gala_stage.jpg',
-        'assets/images/clevion_summit_keynote.jpg',
-        'assets/images/hero-ribbon-bg.jpg'
-      ],
-      galleryItems: [
-        { span: 'span-full', img: 'assets/images/clevion_gala_stage.jpg', caption: '01. Mainstage Light Array & Center Plenary' }
-      ],
       nextId: 'cardiology-congress',
-      nextTitle: 'global cardiology congress',
-      nextImage: 'assets/images/clevion_summit_keynote.jpg'
+      nextTitle: '21st isc conference',
+      nextImage: 'assets/images/cases/isc-cardiology-conference.jpg'
     }
   };
 

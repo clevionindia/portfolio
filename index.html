@@ -1653,25 +1653,21 @@
     const D = [
       ['21st ISC Conference', 'Conference Identity', '2026', 'linear-gradient(180deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.78) 100%), url(assets/images/cases/isc-cardiology-conference.jpg) center/cover', '#ffffff', '', 'assets/images/cases/isc-cardiology-conference.jpg', 'A distinguished visual identity for the 21st Annual Conference of the Indian Society of Cardiology, translating the heart of the specialty into one cohesive system across keynote stages, venue environments, delegate collaterals and digital platforms.', 'assets/images/cases/isc-wide.jpg', 'assets/images/cases/screen1.jpg', 'assets/images/cases/screen2.jpg', 'assets/images/cases/screen3.jpg'],
       ['The Chamber of Tax Consultants', 'Centenary Summit & Scenography', '2026', 'linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.12) 35%, rgba(0,0,0,0.76) 100%), url(assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/golden-jubilee.jpg) center/cover', '#ffffff', '', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/golden-jubilee.jpg', 'A landmark visual identity and spatial experience celebrating 100 years of India’s premier tax fraternity (1926–2026). Translating a century of authority and wisdom into cohesive stage scenography, curved panoramic LED environments, architectural wayfinding, and tactile VIP print suites across the Shatabdi Manthan Centenary Conclave in Mumbai, the 19th International Taxation Conference in Udaipur, and the 50th Golden Jubilee Residential Course.', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/ballroom-wide.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/stage-scenography.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/keynote-plenary.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/centenary-visual.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/print-collaterals.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/concourse-standee.jpg'],
-      ['Cardio Live 26', 'Cardiology Summit & Scenography', '2026', 'linear-gradient(180deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.78) 100%), url(assets/images/cases/Cardiolive/photobooth.png) center/cover', '#ffffff', '', 'assets/images/cases/Cardiolive/photobooth.png', 'A distinguished visual identity and spatial scenography for the 1st Course of Cardio Live 26 at Hotel Radisson Blu, Udaipur. Blending cardiac science with royal Rajasthani architectural heritage, the system encompasses panoramic stage LED environments, palatial arch photobooths, bespoke delegate credentials, executive stationery, and architectural wayfinding.', 'assets/images/cases/Cardiolive/wideimg.png', 'assets/images/cases/Cardiolive/photobooth.png', 'assets/images/cases/Cardiolive/standee.png', 'assets/images/cases/Cardiolive/badge.png', 'assets/images/cases/Cardiolive/notepad.png'],
-      ['Kesar & Co.', 'Packaging', '2025', '#d8cdbb', '#212121', 'sc'],
-      ['Meher Foundation', 'Annual report', '2025', '#f8f5f0', '#212121'],
-      ['Pichola', 'Hospitality', '2026', '#2f3b33', '#f8f5f0', 'sc'],
-      ['Sutra Congress', 'Event branding', '2026', '#b9694e', '#f8f5f0'],
-      ['Tamas Studio', 'Identity', '2024', '#212121', '#f8f5f0', 'sc'],
-      ['Ledger Chamber', 'Print collateral', '2025', '#e9e2d6', '#212121'],
-      ['Haveli Tea', 'Social creatives', '2026', '#8a8478', '#f8f5f0'],
-      ['Nine Rivers', 'Wayfinding', '2024', '#f8f5f0', '#212121', 'sc'],
-      ['Orchid Medical', 'Conference kit', '2025', '#3b4a52', '#f8f5f0'],
-      ['Mahal Atelier', 'Lookbook', '2026', '#cfc3ad', '#212121', 'sc'],
-      ['Ekam Trust', 'Identity', '2024', '#212121', '#f8f5f0']];
-    $('#caselist').innerHTML = D.slice(0, 8).map(([n, t, y, bg, fg, s, img], i) => {
-      const isImg = !!img || (bg && bg.includes('url('));
-      const cvCls = isImg ? 'cv has-img' : 'cv';
-      return `<a href="#" class="card" data-cur="View" data-i="${i}"><span class="lab">${n}</span><div class="media"><div class="${cvCls}" style="background:${bg};color:${fg};${bg == '#f8f5f0' ? 'box-shadow:inset 0 0 0 1px rgba(33,33,33,.15)' : ''}"><small><span>${t}</span><span>${y}</span></small><b class="${s || ''}">${n}</b><small><span>${String(i + 1).padStart(2, '0')}</span><span>View case</span></small></div></div></a>`;
-    }).join('');
-    const cl = $('#caselist'); cl.insertAdjacentHTML('beforeend', cl.innerHTML);
-    cl.querySelectorAll('.card:nth-child(n+9)').forEach(c => { c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1 });
+      ['Cardio Live 26', 'Cardiology Summit & Scenography', '2026', 'linear-gradient(180deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.78) 100%), url(assets/images/cases/Cardiolive/photobooth.png) center/cover', '#ffffff', '', 'assets/images/cases/Cardiolive/photobooth.png', 'A distinguished visual identity and spatial scenography for the 1st Course of Cardio Live 26 at Hotel Radisson Blu, Udaipur. Blending cardiac science with royal Rajasthani architectural heritage, the system encompasses panoramic stage LED environments, palatial arch photobooths, bespoke delegate credentials, executive stationery, and architectural wayfinding.', 'assets/images/cases/Cardiolive/wideimg.png', 'assets/images/cases/Cardiolive/photobooth.png', 'assets/images/cases/Cardiolive/standee.png', 'assets/images/cases/Cardiolive/badge.png', 'assets/images/cases/Cardiolive/notepad.png']
+    ];
+    const N = D.length;
+    const REPEAT = 4;
+    let cardsHtml = '';
+    for (let r = 0; r < REPEAT; r++) {
+      cardsHtml += D.map(([n, t, y, bg, fg, s, img], i) => {
+        const isImg = !!img || (bg && bg.includes('url('));
+        const cvCls = isImg ? 'cv has-img' : 'cv';
+        return `<a href="#" class="card" data-cur="View" data-i="${i}"><span class="lab">${n}</span><div class="media"><div class="${cvCls}" style="background:${bg};color:${fg}"><small><span>${t}</span><span>${y}</span></small><b class="${s || ''}">${n}</b><small><span>${String(i + 1).padStart(2, '0')}</span><span>View case</span></small></div></div></a>`;
+      }).join('');
+    }
+    $('#caselist').innerHTML = cardsHtml;
+    const cl = $('#caselist');
+    cl.querySelectorAll(`.card:nth-child(n+${N + 1})`).forEach(c => { c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1 });
     cl.addEventListener('click', e => { if (e.target.closest('a')) e.preventDefault() });
     // theme
     const root = document.documentElement, tb = $('#theme');
@@ -1768,7 +1764,7 @@
       const item = D[i];
       const [n, t, y, bg, fg, s, img, desc, wideImg] = item;
       const scrList = item.slice(9).filter(Boolean);
-      const nx = D[(i + 1) % 8], P = ['#d8cdbb', '#212121', '#b9694e', '#2f3b33', '#8a8478', '#e9e2d6', '#3b4a52', '#cfc3ad'];
+      const nx = D[(i + 1) % D.length], P = ['#d8cdbb', '#212121', '#b9694e', '#2f3b33', '#8a8478', '#e9e2d6', '#3b4a52', '#cfc3ad'];
       const curImages = [img, wideImg, ...scrList].filter(Boolean).filter((v, idx, a) => a.indexOf(v) === idx);
       const allCaseImages = D.flatMap(d => [d[6], d[8], ...(d.slice(9) || [])]).filter(Boolean).filter((v, idx, a) => a.indexOf(v) === idx);
       const galImages = curImages.length > 0 ? curImages : allCaseImages;
@@ -1791,7 +1787,7 @@
       pj.innerHTML = `<section class="p-top"><div class="p-hero"><div class="${cvCls}" style="background:${bg};color:${fg}"><small><span>${t}</span><span>${y}</span></small>${isImg ? '' : `<b class="${s || ''}">${n}</b>`}<small><span>${String(i + 1).padStart(2, '0')}</span><span>Case</span></small></div></div><div class="p-bot"><h1 class="p-t"><span class="rv"><span>${n.toLowerCase()}</span></span></h1><div class="p-meta rvi"><div><em>Category</em>${t}</div><div><em>Year</em>${y}</div><div><em>Based in</em>India</div></div></div></section><section class="p-desc"><p class="rvi">${story}</p></section><section class="p-gal"><div class="row">${tiles(0)}</div><div class="row">${tiles(3)}</div></section><section class="p-scr">${screensHtml}</section>${wideCard}<a class="p-next" id="pnext" data-cur="Open"><span><em>next case</em><b class="rv"><span>${nx[0].toLowerCase()}</span></b></span><div class="nt" style="background:${nx[3]}"></div></a>`;
       pj.scrollTop = 0; pj.classList.remove('live'); pj.querySelectorAll('.rv,.rvi').forEach(el => io3.observe(el)); $('#pnext').onclick = goNext; updGal();
     };
-    const goNext = () => { const n = (pcur + 1) % 8; gsap.to(pj, { opacity: 0, duration: RM ? 0 : .4, onComplete: () => { fill(n); gsap.to(pj, { opacity: 1, duration: RM ? 0 : .5, onComplete: () => { pj.classList.add('live'); gsap.set(pj, { clearProps: 'opacity' }) } }) } }) };
+    const goNext = () => { const n = (pcur + 1) % D.length; gsap.to(pj, { opacity: 0, duration: RM ? 0 : .4, onComplete: () => { fill(n); gsap.to(pj, { opacity: 1, duration: RM ? 0 : .5, onComplete: () => { pj.classList.add('live'); gsap.set(pj, { clearProps: 'opacity' }) } }) } }) };
     const openProject = (i, card) => {
       if (projOn) return; projOn = true; document.body.classList.add('proj-on'); fill(i);
       const m = card.querySelector('.media').getBoundingClientRect(), fly = document.createElement('div');
@@ -1825,7 +1821,7 @@
     // infinite cases loop
     (() => {
       const sec = $('#cases'), tr = $('#caselist'); let W = 1, pos = 0, target = 0, drag = false, lx = 0;
-      const measure = () => { W = tr.children[8] ? tr.children[8].offsetLeft - tr.children[0].offsetLeft : tr.scrollWidth / 2 };
+      const measure = () => { W = tr.children[N] ? tr.children[N].offsetLeft - tr.children[0].offsetLeft : tr.scrollWidth / REPEAT };
       measure(); addEventListener('resize', measure); addEventListener('load', measure);
       const busy = () => modal.classList.contains('open') || mv.classList.contains('open') || document.body.classList.contains('proj-on');
       addEventListener('wheel', e => { if (e.ctrlKey || busy()) return; e.preventDefault(); target += Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY }, { passive: false });
