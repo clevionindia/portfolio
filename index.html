@@ -1124,24 +1124,24 @@
     }
 
     .p-wide {
-      min-height: 80vh;
+      width: 100%;
+      min-height: auto;
       background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6vh 4vw;
+      padding: 6vh 0;
       position: relative;
+      overflow: hidden;
     }
 
     .p-wide img {
       width: 100%;
-      max-width: min(92vw, 1500px);
+      max-width: 100%;
       height: auto;
-      max-height: 85vh;
-      object-fit: contain;
-      border-radius: 6px;
       display: block;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, .22);
+      border-radius: 0;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .28);
     }
 
     .p-next {
