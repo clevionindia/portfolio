@@ -91,7 +91,7 @@
     'lake-live-fest': {
       title: 'lake live fest',
       client: 'Lake Live Festival Board',
-      year: '2027',
+      year: '',
       category: 'Festival Identity & Scenography',
       tags: ['Festival Identity', 'Mainstage Scenography', 'Signal Geometry', 'App & Merch'],
       heroImage: 'assets/images/cases/LakeLiveFest/live-stage-wide.jpg',
