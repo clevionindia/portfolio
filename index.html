@@ -1049,16 +1049,36 @@
 
     .p-gal i {
       display: block;
-      width: 12vw;
+      width: clamp(140px, 12.5vw, 240px);
       aspect-ratio: 4/5;
       background: var(--c);
-      border-radius: 2px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
-      transition: transform .35s var(--ease);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .14);
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+      flex-shrink: 0;
     }
 
     .p-gal i:hover {
-      transform: scale(1.04);
+      transform: scale(1.05);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .28);
+      z-index: 2;
+    }
+
+    .p-gal i img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s var(--ease);
+      pointer-events: none;
+    }
+
+    .p-gal i:hover img {
+      transform: scale(1.08);
     }
 
     .p-scr {
@@ -1749,7 +1769,15 @@
       const [n, t, y, bg, fg, s, img, desc, wideImg] = item;
       const scrList = item.slice(9).filter(Boolean);
       const nx = D[(i + 1) % 8], P = ['#d8cdbb', '#212121', '#b9694e', '#2f3b33', '#8a8478', '#e9e2d6', '#3b4a52', '#cfc3ad'];
-      const tiles = o => Array.from({ length: 18 }, (_, k) => `<i style="--c:${P[(k + o) % 8]}"></i>`).join('');
+      const curImages = [img, wideImg, ...scrList].filter(Boolean).filter((v, idx, a) => a.indexOf(v) === idx);
+      const allCaseImages = D.flatMap(d => [d[6], d[8], ...(d.slice(9) || [])]).filter(Boolean).filter((v, idx, a) => a.indexOf(v) === idx);
+      const galImages = curImages.length > 0 ? curImages : allCaseImages;
+      const tiles = o => Array.from({ length: 18 }, (_, k) => {
+        const c = P[(k + o) % P.length];
+        const src = galImages.length > 0 ? galImages[(k + o) % galImages.length] : '';
+        const imgTag = src ? `<img src="${src}" alt="${n} showcase ${(k % (galImages.length || 1)) + 1}" loading="lazy">` : '';
+        return `<i style="--c:${c}">${imgTag}</i>`;
+      }).join('');
       const isImg = !!img || (bg && bg.includes('url('));
       const cvCls = isImg ? 'cv has-img' : 'cv';
       const story = desc || 'Comprehensive visual identity, event branding and environmental design developed for organisations that value clarity and craft.';
