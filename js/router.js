@@ -35,23 +35,28 @@
       nextImage: 'assets/images/clevion_expo_pavilion.jpg'
     },
     'tax-consultants': {
-      title: 'chamber of tax consultants',
-      client: 'Chamber of Tax Consultants',
-      year: '2024',
-      category: 'Executive Summit',
-      tags: ['Corporate Identity', 'Spatial Wayfinding', 'Mainstage'],
-      heroImage: 'assets/images/clevion_expo_pavilion.jpg',
-      leadDesc: 'Comprehensive identity refresh and spatial brand architecture for India’s premier financial leadership conclave. Unifying physical stage scenography, digital broadcast packages, and high-precision VIP collaterals.',
+      title: 'the chamber of tax consultants',
+      client: 'The Chamber of Tax Consultants',
+      year: '2026',
+      category: 'Centenary Summit & Scenography',
+      tags: ['Spatial Scenography', 'Curved LED Horizon', 'Print Suite', 'Centenary Identity'],
+      heroImage: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/golden-jubilee.jpg',
+      leadDesc: 'A landmark visual identity and spatial experience celebrating 100 years of India’s premier tax fraternity (1926–2026). Translating a century of authority and wisdom into cohesive stage scenography, curved panoramic LED environments, architectural wayfinding, and tactile VIP print suites across the Shatabdi Manthan Centenary Conclave in Mumbai, the 19th International Taxation Conference in Udaipur, and the 50th Golden Jubilee Residential Course.',
       railImages: [
-        'assets/images/clevion_expo_pavilion.jpg',
-        'assets/images/clevion-brand-concept.jpg',
-        'assets/images/clevion_summit_keynote.jpg',
-        'assets/images/clevion_gala_stage.jpg'
+        'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/ballroom-wide.jpg',
+        'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/stage-scenography.jpg',
+        'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/keynote-plenary.jpg',
+        'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/centenary-visual.jpg',
+        'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/print-collaterals.jpg',
+        'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/concourse-standee.jpg'
       ],
       galleryItems: [
-        { span: 'span-full', img: 'assets/images/clevion_expo_pavilion.jpg', caption: '01. Executive Forum Concourse & Registration Portals' },
-        { span: 'span-10', img: 'assets/images/clevion-brand-concept.jpg', caption: '02. Dynamic Typographic Grid' },
-        { span: 'span-8-right', img: 'assets/images/clevion_summit_keynote.jpg', caption: '03. Main Plenary Hall Environment' }
+        { span: 'span-full', img: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/ballroom-wide.jpg', caption: '01. Grand Ballroom Concourse & Panoramic LED Horizon' },
+        { span: 'span-10', img: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/stage-scenography.jpg', caption: '02. 3D Curved LED Scenography & Executive Plenary Setup' },
+        { span: 'span-8-right', img: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/keynote-plenary.jpg', caption: '03. Live Keynote Stage & Shatabdi Manthan Dignitary Plenary' },
+        { span: 'span-full', img: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/centenary-visual.jpg', caption: '04. Shatabdi Manthan Centenary Visual Identity System' },
+        { span: 'span-10', img: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/print-collaterals.jpg', caption: '05. Gold-Embossed Golden Jubilee Print Suite & Invitations' },
+        { span: 'span-8-right', img: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/concourse-standee.jpg', caption: '06. Architectural Concourse Standee & QR Membership Portals' }
       ],
       nextId: 'raj-neocon',
       nextTitle: 'raj neocon national assembly',
