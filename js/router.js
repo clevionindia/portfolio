@@ -58,6 +58,32 @@
         { span: 'span-10', img: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/print-collaterals.jpg', caption: '05. Gold-Embossed Golden Jubilee Print Suite & Invitations' },
         { span: 'span-8-right', img: 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/concourse-standee.jpg', caption: '06. Architectural Concourse Standee & QR Membership Portals' }
       ],
+      nextId: 'cardiolive',
+      nextTitle: 'cardio live 26',
+      nextImage: 'assets/images/cases/Cardiolive/photobooth.png'
+    },
+    'cardiolive': {
+      title: 'cardio live 26',
+      client: 'Cardio Live Board',
+      year: '2026',
+      category: 'Cardiology Summit & Scenography',
+      tags: ['Spatial Scenography', 'Heritage Photobooth', 'Delegate Suite', 'Wayfinding'],
+      heroImage: 'assets/images/cases/Cardiolive/photobooth.png',
+      leadDesc: 'A distinguished visual identity and spatial scenography for the 1st Course of Cardio Live 26 at Hotel Radisson Blu, Udaipur. Blending cardiac science with royal Rajasthani architectural heritage, the system encompasses panoramic stage LED environments, palatial arch photobooths, bespoke delegate credentials, executive stationery, and architectural wayfinding.',
+      railImages: [
+        'assets/images/cases/Cardiolive/wideimg.png',
+        'assets/images/cases/Cardiolive/photobooth.png',
+        'assets/images/cases/Cardiolive/standee.png',
+        'assets/images/cases/Cardiolive/badge.png',
+        'assets/images/cases/Cardiolive/notepad.png'
+      ],
+      galleryItems: [
+        { span: 'span-full', img: 'assets/images/cases/Cardiolive/wideimg.png', caption: '01. Keynote Panoramic Stage & LED Horizon' },
+        { span: 'span-10', img: 'assets/images/cases/Cardiolive/photobooth.png', caption: '02. Rajasthani Arch Photobooth & 3D Cardiac Sculpture' },
+        { span: 'span-8-right', img: 'assets/images/cases/Cardiolive/standee.png', caption: '03. Architectural Directional Wayfinding Standee' },
+        { span: 'span-10', img: 'assets/images/cases/Cardiolive/badge.png', caption: '04. Delegate Badge & Woven Lanyard Suite' },
+        { span: 'span-8-right', img: 'assets/images/cases/Cardiolive/notepad.png', caption: '05. Executive Table Stationery & Coaster Set' }
+      ],
       nextId: 'raj-neocon',
       nextTitle: 'raj neocon national assembly',
       nextImage: 'assets/images/clevion_gala_stage.jpg'

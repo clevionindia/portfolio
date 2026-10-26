@@ -1051,7 +1051,14 @@
       display: block;
       width: 12vw;
       aspect-ratio: 4/5;
-      background: var(--c)
+      background: var(--c);
+      border-radius: 2px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
+      transition: transform .35s var(--ease);
+    }
+
+    .p-gal i:hover {
+      transform: scale(1.04);
     }
 
     .p-scr {
@@ -1082,6 +1089,18 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    .mk.mk-standee,
+    .mk:has(img[src*="standee"]) {
+      width: min(34vw, 480px);
+      aspect-ratio: 9/16;
+      background: rgba(0, 0, 0, .04);
+    }
+
+    .mk.mk-standee img,
+    .mk:has(img[src*="standee"]) img {
+      object-fit: contain;
     }
 
     .p-wide {
@@ -1614,7 +1633,7 @@
     const D = [
       ['21st ISC Conference', 'Conference Identity', '2026', 'linear-gradient(180deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.78) 100%), url(assets/images/cases/isc-cardiology-conference.jpg) center/cover', '#ffffff', '', 'assets/images/cases/isc-cardiology-conference.jpg', 'A distinguished visual identity for the 21st Annual Conference of the Indian Society of Cardiology, translating the heart of the specialty into one cohesive system across keynote stages, venue environments, delegate collaterals and digital platforms.', 'assets/images/cases/isc-wide.jpg', 'assets/images/cases/screen1.jpg', 'assets/images/cases/screen2.jpg', 'assets/images/cases/screen3.jpg'],
       ['The Chamber of Tax Consultants', 'Centenary Summit & Scenography', '2026', 'linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.12) 35%, rgba(0,0,0,0.76) 100%), url(assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/golden-jubilee.jpg) center/cover', '#ffffff', '', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/golden-jubilee.jpg', 'A landmark visual identity and spatial experience celebrating 100 years of India’s premier tax fraternity (1926–2026). Translating a century of authority and wisdom into cohesive stage scenography, curved panoramic LED environments, architectural wayfinding, and tactile VIP print suites across the Shatabdi Manthan Centenary Conclave in Mumbai, the 19th International Taxation Conference in Udaipur, and the 50th Golden Jubilee Residential Course.', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/ballroom-wide.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/stage-scenography.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/keynote-plenary.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/centenary-visual.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/print-collaterals.jpg', 'assets/images/cases/The%20Chamber%20of%20Tax%20Consultant/concourse-standee.jpg'],
-      ['Aravali Capital', 'Brand identity', '2026', '#212121', '#f8f5f0'],
+      ['Cardio Live 26', 'Cardiology Summit & Scenography', '2026', 'linear-gradient(180deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.78) 100%), url(assets/images/cases/Cardiolive/photobooth.png) center/cover', '#ffffff', '', 'assets/images/cases/Cardiolive/photobooth.png', 'A distinguished visual identity and spatial scenography for the 1st Course of Cardio Live 26 at Hotel Radisson Blu, Udaipur. Blending cardiac science with royal Rajasthani architectural heritage, the system encompasses panoramic stage LED environments, palatial arch photobooths, bespoke delegate credentials, executive stationery, and architectural wayfinding.', 'assets/images/cases/Cardiolive/wideimg.png', 'assets/images/cases/Cardiolive/photobooth.png', 'assets/images/cases/Cardiolive/standee.png', 'assets/images/cases/Cardiolive/badge.png', 'assets/images/cases/Cardiolive/notepad.png'],
       ['Kesar & Co.', 'Packaging', '2025', '#d8cdbb', '#212121', 'sc'],
       ['Meher Foundation', 'Annual report', '2025', '#f8f5f0', '#212121'],
       ['Pichola', 'Hospitality', '2026', '#2f3b33', '#f8f5f0', 'sc'],
@@ -1735,11 +1754,14 @@
       const cvCls = isImg ? 'cv has-img' : 'cv';
       const story = desc || 'Comprehensive visual identity, event branding and environmental design developed for organisations that value clarity and craft.';
       const screensHtml = scrList.length > 0
-        ? scrList.map((src, idx) => `<div class="mk rvi"><img src="${src}" alt="${n} screen ${String(idx + 1).padStart(2, '0')}" loading="lazy"></div>`).join('')
+        ? scrList.map((src, idx) => {
+          const isStandee = src.toLowerCase().includes('standee');
+          return `<div class="mk rvi${isStandee ? ' mk-standee' : ''}"><img src="${src}" alt="${n} screen ${String(idx + 1).padStart(2, '0')}" loading="lazy"></div>`;
+        }).join('')
         : `<div class="mk rvi" style="--c:#1c1c1c">screen 01</div><div class="mk rvi" style="--c:#e9e2d6;color:#555">screen 02</div><div class="mk rvi" style="--c:#8a8478">screen 03</div>`;
       const wideCard = wideImg ? `<section class="p-wide rvi"><img src="${wideImg}" alt="${n} wide setup" loading="lazy"></section>` : `<section class="p-wide rvi">wide image</section>`;
-      pj.innerHTML = `<section class="p-top"><div class="p-hero"><div class="${cvCls}" style="background:${bg};color:${fg}"><small><span>${t}</span><span>${y}</span></small>${isImg ? '' : `<b class="${s || ''}">${n}</b>`}<small><span>${String(i + 1).padStart(2, '0')}</span><span>Case</span></small></div></div><div class="p-bot"><h1 class="p-t"><span class="rv"><span>${n.toLowerCase()}</span></span></h1><div class="p-meta rvi"><div><em>Category</em>${t}</div><div><em>Year</em>${y}</div><div><em>Based in</em>India</div></div></div></section><section class="p-desc"><p class="rvi">${story}</p></section>${isImg ? '' : `<section class="p-gal"><div class="row">${tiles(0)}</div><div class="row">${tiles(3)}</div></section>`}<section class="p-scr">${screensHtml}</section>${wideCard}<a class="p-next" id="pnext" data-cur="Open"><span><em>next case</em><b class="rv"><span>${nx[0].toLowerCase()}</span></b></span><div class="nt" style="background:${nx[3]}"></div></a>`;
-      pj.scrollTop = 0; pj.classList.remove('live'); pj.querySelectorAll('.rv,.rvi').forEach(el => io3.observe(el)); $('#pnext').onclick = goNext
+      pj.innerHTML = `<section class="p-top"><div class="p-hero"><div class="${cvCls}" style="background:${bg};color:${fg}"><small><span>${t}</span><span>${y}</span></small>${isImg ? '' : `<b class="${s || ''}">${n}</b>`}<small><span>${String(i + 1).padStart(2, '0')}</span><span>Case</span></small></div></div><div class="p-bot"><h1 class="p-t"><span class="rv"><span>${n.toLowerCase()}</span></span></h1><div class="p-meta rvi"><div><em>Category</em>${t}</div><div><em>Year</em>${y}</div><div><em>Based in</em>India</div></div></div></section><section class="p-desc"><p class="rvi">${story}</p></section><section class="p-gal"><div class="row">${tiles(0)}</div><div class="row">${tiles(3)}</div></section><section class="p-scr">${screensHtml}</section>${wideCard}<a class="p-next" id="pnext" data-cur="Open"><span><em>next case</em><b class="rv"><span>${nx[0].toLowerCase()}</span></b></span><div class="nt" style="background:${nx[3]}"></div></a>`;
+      pj.scrollTop = 0; pj.classList.remove('live'); pj.querySelectorAll('.rv,.rvi').forEach(el => io3.observe(el)); $('#pnext').onclick = goNext; updGal();
     };
     const goNext = () => { const n = (pcur + 1) % 8; gsap.to(pj, { opacity: 0, duration: RM ? 0 : .4, onComplete: () => { fill(n); gsap.to(pj, { opacity: 1, duration: RM ? 0 : .5, onComplete: () => { pj.classList.add('live'); gsap.set(pj, { clearProps: 'opacity' }) } }) } }) };
     const openProject = (i, card) => {
@@ -1762,7 +1784,16 @@
     document.querySelector('header a').addEventListener('click', e => { e.preventDefault(); closeProject() });
     addEventListener('keydown', e => { if (e.key === 'Escape') closeProject() });
     pj.addEventListener('wheel', e => e.stopPropagation());
-    pj.addEventListener('scroll', () => { const g = pj.querySelector('.p-gal'); if (!g) return; const r = g.getBoundingClientRect(), p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height))), vw = innerWidth; g.children[0].style.transform = `translateX(${-(.15 + p * .45) * vw}px)`; g.children[1].style.transform = `translateX(${-(1.1 - p * .7) * vw}px)` }, { passive: true });
+    const updGal = () => {
+      const g = pj.querySelector('.p-gal');
+      if (!g || !g.children || g.children.length < 2) return;
+      const r = g.getBoundingClientRect(),
+        p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height))),
+        vw = innerWidth;
+      g.children[0].style.transform = `translateX(${-(.15 + p * .45) * vw}px)`;
+      g.children[1].style.transform = `translateX(${-(1.1 - p * .7) * vw}px)`;
+    };
+    pj.addEventListener('scroll', updGal, { passive: true });
     // infinite cases loop
     (() => {
       const sec = $('#cases'), tr = $('#caselist'); let W = 1, pos = 0, target = 0, drag = false, lx = 0;
