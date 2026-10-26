@@ -84,6 +84,35 @@
         { span: 'span-10', img: 'assets/images/cases/Cardiolive/badge.png', caption: '04. Delegate Badge & Woven Lanyard Suite' },
         { span: 'span-8-right', img: 'assets/images/cases/Cardiolive/notepad.png', caption: '05. Executive Table Stationery & Coaster Set' }
       ],
+      nextId: 'lake-live-fest',
+      nextTitle: 'lake live fest',
+      nextImage: 'assets/images/cases/LakeLiveFest/live-stage-wide.jpg'
+    },
+    'lake-live-fest': {
+      title: 'lake live fest',
+      client: 'Lake Live Festival Board',
+      year: '2027',
+      category: 'Festival Identity & Scenography',
+      tags: ['Festival Identity', 'Mainstage Scenography', 'Signal Geometry', 'App & Merch'],
+      heroImage: 'assets/images/cases/LakeLiveFest/live-stage-wide.jpg',
+      leadDesc: 'An electrifying festival identity and spatial experience for Lake Live Fest—a three-day celebration of live music, art, and culinary culture across four waterfront stages in Udaipur. Powered by high-contrast typography, acoustic signal geometry, and a high-impact color system of signal red, cobalt, and acid yellow, the identity extends across panoramic mainstage LED scenography, A2 line-up print series, dynamic mobile festival apps, RFID credential suites, and outdoor highway takeovers.',
+      railImages: [
+        'assets/images/cases/LakeLiveFest/live-stage-wide.jpg',
+        'assets/images/cases/LakeLiveFest/page_01.png',
+        'assets/images/cases/LakeLiveFest/page_03.png',
+        'assets/images/cases/LakeLiveFest/page_04.png',
+        'assets/images/cases/LakeLiveFest/page_05.png',
+        'assets/images/cases/LakeLiveFest/page_06.png',
+        'assets/images/cases/LakeLiveFest/page_02.png'
+      ],
+      galleryItems: [
+        { span: 'span-full', img: 'assets/images/cases/LakeLiveFest/live-stage-wide.jpg', caption: '01. Waterfront Sunset Mainstage & Panoramic LED Scenography' },
+        { span: 'span-10', img: 'assets/images/cases/LakeLiveFest/page_01.png', caption: '02. Primary Festival Brand Mark & Key Visual Geometry' },
+        { span: 'span-8-right', img: 'assets/images/cases/LakeLiveFest/page_03.png', caption: '03. A2 Print Poster Series & Line-up Announcement Suite' },
+        { span: 'span-full', img: 'assets/images/cases/LakeLiveFest/page_04.png', caption: '04. Festival Mobile App, Schedule & Digital Ticket Wallet' },
+        { span: 'span-10', img: 'assets/images/cases/LakeLiveFest/page_05.png', caption: '05. 3-Day Tickets, RFID Wristbands, Apparel & Canvas Tote Merch' },
+        { span: 'span-8-right', img: 'assets/images/cases/LakeLiveFest/page_06.png', caption: '06. Highway Outdoor Billboard & Social Campaign Takeovers' }
+      ],
       nextId: 'cardiology-congress',
       nextTitle: '21st isc conference',
       nextImage: 'assets/images/cases/isc-cardiology-conference.jpg'
