@@ -113,6 +113,30 @@
         { span: 'span-10', img: 'assets/images/cases/LakeLiveFest/page_05.png', caption: '05. 3-Day Tickets, RFID Wristbands, Apparel & Canvas Tote Merch' },
         { span: 'span-8-right', img: 'assets/images/cases/LakeLiveFest/page_06.png', caption: '06. Highway Outdoor Billboard & Social Campaign Takeovers' }
       ],
+      nextId: 'rbl-bank',
+      nextTitle: 'rbl bank',
+      nextImage: 'assets/images/cases/RBLBank/screen1.jpg'
+    },
+    'rbl-bank': {
+      title: 'rbl bank',
+      client: 'RBL Bank Ltd.',
+      year: '2026',
+      category: 'Leadership Conclave & Scenography',
+      tags: ['Corporate Scenography', 'Stage Architecture', 'Arch Photobooth', 'Delegate Suite'],
+      heroImage: 'assets/images/cases/RBLBank/screen1.jpg',
+      leadDesc: 'An expansive visual identity and stage scenography developed for RBL Bank’s marquee leadership conclave—Imagine 2031. Drawing inspiration from royal Rajasthani architectural heritage and forward-looking banking innovation, the system features a panoramic LED stage backdrop adorned with ornate palace arches, sculpted ceremonial fountains, and regal motifs, paired with immersive concourse installations and tactile executive collateral.',
+      railImages: [
+        'assets/images/cases/RBLBank/rbl-imagine-wide.jpg',
+        'assets/images/cases/RBLBank/screen1.jpg',
+        'assets/images/cases/RBLBank/screen2.jpg',
+        'assets/images/cases/RBLBank/screen3.jpg'
+      ],
+      galleryItems: [
+        { span: 'span-full', img: 'assets/images/cases/RBLBank/rbl-imagine-wide.jpg', caption: '01. Imagine 2031 Panoramic Stage Backdrop & Arch Architecture' },
+        { span: 'span-10', img: 'assets/images/cases/RBLBank/screen1.jpg', caption: '02. Plenary Keynote Stage & Executive LED Horizon' },
+        { span: 'span-8-right', img: 'assets/images/cases/RBLBank/screen2.jpg', caption: '03. Palatial Archway Photobooth & Ceremonial Fountain' },
+        { span: 'span-10', img: 'assets/images/cases/RBLBank/screen3.jpg', caption: '04. VIP Delegate Notebook, Metal Badge & Lanyard Suite' }
+      ],
       nextId: 'cardiology-congress',
       nextTitle: '21st isc conference',
       nextImage: 'assets/images/cases/isc-cardiology-conference.jpg'
